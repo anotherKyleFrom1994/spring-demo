@@ -1,16 +1,9 @@
 package vmt.demo.common;
 
-import static org.hibernate.cfg.AvailableSettings.C3P0_MAX_SIZE;
-import static org.hibernate.cfg.AvailableSettings.C3P0_MIN_SIZE;
-import static org.hibernate.cfg.AvailableSettings.C3P0_TIMEOUT;
-import static org.hibernate.cfg.AvailableSettings.DRIVER;
-import static org.hibernate.cfg.AvailableSettings.PASS;
-import static org.hibernate.cfg.AvailableSettings.URL;
-import static org.hibernate.cfg.AvailableSettings.USER;
-
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
@@ -21,19 +14,22 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import static org.hibernate.cfg.Environment.*;
+
 @Configuration
 @PropertySource("classpath:jdbc.properties")
 @EnableTransactionManagement
-//@ComponentScans(value = { @ComponentScan("*") })
-@ComponentScans(value = { @ComponentScan("dao"), @ComponentScan("service") })
+@ComponentScans(value = { @ComponentScan("vmt.demo") })
 public class DBConfigs {
-
 	@Autowired
 	private Environment env;
+	@Autowired
+	private ApplicationContext context;
 
 	@Bean
 	public LocalSessionFactoryBean getSessionFactory() {
 		LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
+//		factoryBean.setConfigLocation(context.getResource("classpath:hibernate.cfg.xml"));
 
 		Properties props = new Properties();
 
@@ -48,7 +44,8 @@ public class DBConfigs {
 
 		factoryBean.setHibernateProperties(props);
 		// factoryBean.setAnnotatedClasses(User.class, Role.class);
-		factoryBean.setPackagesToScan("entity");
+		factoryBean.setPackagesToScan("model");
+
 		return factoryBean;
 	}
 
@@ -58,4 +55,5 @@ public class DBConfigs {
 		transactionManager.setSessionFactory(getSessionFactory().getObject());
 		return transactionManager;
 	}
+
 }
