@@ -1,4 +1,4 @@
-package vmt.demo.model;
+package vmt.demo.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "DEMO_USERS")
-public class User {
+public class UserEntity {
 
 	@Id
 	@Column(name = "USER_ID")

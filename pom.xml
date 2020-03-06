@@ -20,6 +20,9 @@
 		<jsp.version>2.3.1</jsp.version>
 		<hsqldb.version>1.8.0.10</hsqldb.version>
 		<oracle.version>12.2.0.1</oracle.version>
+		<jackson.annotations.version>2.9.7</jackson.annotations.version>
+		<jackson.core.version>2.9.7</jackson.core.version>
+		<jackson.databind.version>2.9.7</jackson.databind.version>
 	</properties>
 	<dependencies>
 		<!-- Spring MVC Dependency -->
@@ -99,6 +102,21 @@
 			<version>${oracle.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.annotations.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.databind.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
