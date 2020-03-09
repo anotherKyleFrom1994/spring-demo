@@ -1,12 +1,8 @@
 package vmt.demo.dao;
 
-import java.util.Iterator;
-import java.util.List;
-
-import javax.persistence.Query;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,18 +16,46 @@ public class UserDao implements IUserDao {
 	private SessionFactory sessionFactory;
 
 	@Transactional(readOnly = true)
-	public UserEntity findByUsername(String username, String password) {
+	public UserEntity addUser(String username, String password) {
+
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createNativeQuery(
-				"SELECT * FROM demo_users WHERE user_name = :user_name AND passwd = :passwd", UserEntity.class);
-		query.setParameter("user_name", username);
-		query.setParameter("passwd", password);
-		List<?> resultList = query.getResultList();
-		Iterator<?> iterator = resultList.iterator();
 		UserEntity user = null;
-		while (iterator.hasNext()) {
-			user = (UserEntity) iterator.next();
+
+//		Transaction tx = session.getTransaction();
+//
+//		if (!tx.isActive()) {
+//			tx = session.beginTransaction();
+//		}
+
+		try {
+			user = new UserEntity();
+			user.setUserName(username);
+			user.setPassword(password);
+			
+			session.persist(user);
+			session.flush();
+
+		} catch (Exception e) {
+//			tx.rollback();
+			throw new RuntimeException(e.getMessage());
+
+		} finally {
+//			session.close();
 		}
+
+		return user;
+	}
+
+	@Override
+	public UserEntity updateUser(UserEntity user) {
+		Session session = sessionFactory.getCurrentSession();
+
+		try {
+			session.update(user);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+
 		return user;
 	}
 }

@@ -31,7 +31,6 @@ public class DBConfigs {
 	@Bean
 	public LocalSessionFactoryBean getSessionFactory() {
 		LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
-//		factoryBean.setConfigLocation(context.getResource("classpath:hibernate.cfg.xml"));
 
 		Properties props = new Properties();
 
@@ -47,7 +46,10 @@ public class DBConfigs {
 		props.put(FORMAT_SQL, true);
 
 		factoryBean.setHibernateProperties(props);
+
+//		factoryBean.setConfigLocation(context.getResource("classpath:hibernate.cfg.xml"));
 //		 factoryBean.setAnnotatedClasses(UserEntity.class);
+
 		factoryBean.setPackagesToScan(env.getProperty("packages.to.scan"));
 
 		return factoryBean;

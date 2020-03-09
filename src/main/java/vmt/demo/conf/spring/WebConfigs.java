@@ -12,7 +12,6 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@PropertySource("classpath:jdbc.properties")
 @ComponentScan(basePackages = { "vmt.demo" })
 public class WebConfigs implements WebMvcConfigurer {
 

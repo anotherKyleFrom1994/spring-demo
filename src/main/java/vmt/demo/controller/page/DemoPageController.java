@@ -1,4 +1,4 @@
-package vmt.demo.controller.view;
+package vmt.demo.controller.page;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import vmt.demo.model.view.MessageView;
+import vmt.demo.model.view.ResultView;
 
 @Controller
-public class DemoViewController {
+public class DemoPageController {
 	
 	
 //	@RequestMapping(value = "/submit", method = RequestMethod.POST)

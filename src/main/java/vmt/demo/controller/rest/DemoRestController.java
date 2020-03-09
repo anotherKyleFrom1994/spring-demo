@@ -13,43 +13,50 @@ import org.springframework.web.bind.annotation.RestController;
 
 import vmt.demo.dao.IUserDao;
 import vmt.demo.model.entity.UserEntity;
-import vmt.demo.model.view.MessageView;
+import vmt.demo.model.service.AddUserInput;
+import vmt.demo.model.service.AddUserOutput;
+import vmt.demo.model.view.ResultView;
 import vmt.demo.model.view.UserView;
+import vmt.demo.service.rest.IUserService;
+import vmt.demo.service.rest.UserService;
 
 //@Controller
 //@ResponseBody
 @RestController
 @RequestMapping("/")
 public class DemoRestController {
-
 	@Autowired
-	private IUserDao userDao;
+	private IUserService userService;
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
-	public MessageView addUser(@RequestParam String userName, String userId, String password) {
-		MessageView result = new MessageView();
+	public ResultView addUser(@RequestParam String userName, String password) {
+		ResultView result = new ResultView();
 
-		UserEntity ue = userDao.findByUsername(userName, password);
+		AddUserInput input = new AddUserInput();
+		input.setUserName(userName);
+		input.setPassword(password);
 
-		if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)) {
-			result.setMsg("Username or Password must not be empty");
+		AddUserOutput output = userService.addUser(input);
+		if (output != null) {
+			result.setSuccess(output.isSuccess());
+			result.setMsg(output.getMsg());
 
 		} else {
-			result.setMsg("User " + ue.getUserSeq() + ue.getUserName() + " created");
+			result.setMsg("Somthing's wrong here!");
 		}
 
 		return result;
 	}
 
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-	public MessageView updateUser(@RequestBody UserView userInfo) {
-		MessageView result = new MessageView();
+	public ResultView updateUser(@RequestBody UserView userInfo) {
+		ResultView result = new ResultView();
 
-//		if (userInfo != null) {
-//			result.setMsg("Update userId: " + userInfo.getUserId() + "; password: " + userInfo.getPassword());
-//		} else {
-//			result.setMsg("Username or Password must not be empty");
-//		}
+		if (userInfo != null) {
+			result.setMsg("Update userId: " + userInfo.getUserId() + "; password: " + userInfo.getPassword());
+		} else {
+			result.setMsg("UserId or Password must not be empty");
+		}
 
 		return result;
 	}
@@ -65,7 +72,7 @@ public class DemoRestController {
 		model.addAttribute("message", "登入者姓名 " + principal.getName());
 		return "index";
 	}
-	
+
 //	@GetMapping("/{name:[a-z-]+}-{version:\\d\\.\\d\\.\\d}{ext:\\.[a-z]+}")
 //	public void handle(@PathVariable String version, @PathVariable String ext) {
 //	    // ...
