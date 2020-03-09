@@ -2,21 +2,24 @@ package vmt.demo.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "DEMO_USERS")
+@Table(name = "DEMO_USERS", schema = "KYLE_LIN")
 public class UserEntity {
 
 	@Id
-	@Column(name = "USER_ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "USER_ID", nullable = false)
 	private Integer userSeq;
 
-	@Column(name = "USER_NAME")
+	@Column(name = "USER_NAME", nullable = false)
 	private String userName;
 
-	@Column(name = "PASSWD")
+	@Column(name = "PASSWD", nullable = false)
 	private String password;
 
 	public Integer getUserSeq() {

@@ -1,6 +1,8 @@
-package vmt.demo.common;
+package vmt.demo.conf.spring;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import vmt.demo.conf.db.DBConfigs;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
