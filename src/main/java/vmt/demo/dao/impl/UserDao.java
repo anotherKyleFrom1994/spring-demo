@@ -1,57 +1,58 @@
-package vmt.demo.dao;
+package vmt.demo.dao.impl;
+
+import javax.transaction.Synchronization;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import vmt.demo.conf.db.SessionFactoryInitializer.SessionFactoryCreator;
+import vmt.demo.dao.IUserDao;
 import vmt.demo.model.entity.UserEntity;
 
 @Repository
-public class UserDao implements IUserDao {
+public class UserDao extends SessionFactoryCreator implements IUserDao {
 
-	@Autowired
-	private SessionFactory sessionFactory;
+	public UserDao() {
+		super();
+	}
 
 	@Transactional(readOnly = true)
+	@Override
 	public UserEntity addUser(String username, String password) {
-
-		Session session = sessionFactory.getCurrentSession();
+		Session session = null;
 		UserEntity user = null;
 
-//		Transaction tx = session.getTransaction();
-//
-//		if (!tx.isActive()) {
-//			tx = session.beginTransaction();
-//		}
-
 		try {
+			session = this.getSessionFactory().getCurrentSession();
+
 			user = new UserEntity();
 			user.setUserName(username);
 			user.setPassword(password);
-			
+
 			session.persist(user);
 			session.flush();
 
 		} catch (Exception e) {
-//			tx.rollback();
+			if (session != null) {
+				session.getTransaction().rollback();
+			}
 			throw new RuntimeException(e.getMessage());
-
-		} finally {
-//			session.close();
 		}
 
 		return user;
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public UserEntity updateUser(UserEntity user) {
-		Session session = sessionFactory.getCurrentSession();
-
+		Session session = null;
 		try {
+			session = this.getSessionFactory().getCurrentSession();
 			session.update(user);
+			session.flush();
+
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage());
 		}

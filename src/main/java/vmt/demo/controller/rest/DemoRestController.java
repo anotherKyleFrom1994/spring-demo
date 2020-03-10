@@ -15,10 +15,12 @@ import vmt.demo.dao.IUserDao;
 import vmt.demo.model.entity.UserEntity;
 import vmt.demo.model.service.AddUserInput;
 import vmt.demo.model.service.AddUserOutput;
+import vmt.demo.model.service.UpdateUserInput;
+import vmt.demo.model.service.UpdateUserOutput;
 import vmt.demo.model.view.ResultView;
 import vmt.demo.model.view.UserView;
 import vmt.demo.service.rest.IUserService;
-import vmt.demo.service.rest.UserService;
+import vmt.demo.service.rest.impl.UserService;
 
 //@Controller
 //@ResponseBody
@@ -53,7 +55,17 @@ public class DemoRestController {
 		ResultView result = new ResultView();
 
 		if (userInfo != null) {
-			result.setMsg("Update userId: " + userInfo.getUserId() + "; password: " + userInfo.getPassword());
+			UpdateUserInput input = new UpdateUserInput();
+			input.setUserId(userInfo.getUserId());
+			input.setPassword(userInfo.getPassword());
+			UpdateUserOutput output = userService.updateUser(input);
+
+			if (output.isSuccess()) {
+				result.setMsg("Update userId: " + userInfo.getUserId() + "; password: " + userInfo.getPassword());
+
+			} else {
+				result.setMsg(output.getMsg());
+			}
 		} else {
 			result.setMsg("UserId or Password must not be empty");
 		}

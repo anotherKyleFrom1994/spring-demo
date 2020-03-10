@@ -1,18 +1,8 @@
-package vmt.demo.model.view;
+package vmt.demo.model.service;
 
-public class UserView {
+public class UpdateUserInput {
 	private int userId;
 	private String password;
-
-	public UserView(int userId, String password) {
-		super();
-		this.userId = userId;
-		this.password = password;
-	}
-
-	public UserView() {
-		super();
-	}
 
 	public int getUserId() {
 		return userId;
