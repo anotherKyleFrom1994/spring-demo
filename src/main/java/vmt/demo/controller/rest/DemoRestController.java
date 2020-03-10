@@ -4,15 +4,12 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import vmt.demo.dao.IUserDao;
-import vmt.demo.model.entity.UserEntity;
 import vmt.demo.model.service.AddUserInput;
 import vmt.demo.model.service.AddUserOutput;
 import vmt.demo.model.service.UpdateUserInput;
@@ -20,7 +17,6 @@ import vmt.demo.model.service.UpdateUserOutput;
 import vmt.demo.model.view.ResultView;
 import vmt.demo.model.view.UserView;
 import vmt.demo.service.rest.IUserService;
-import vmt.demo.service.rest.impl.UserService;
 
 //@Controller
 //@ResponseBody

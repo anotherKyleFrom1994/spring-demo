@@ -1,5 +1,6 @@
 package vmt.demo.conf.db;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,8 +15,8 @@ import org.springframework.stereotype.Repository;
 public class SessionFactoryInitializer {
 
 	public interface ISessionFactoryCreator {
-
-	}
+		public Session getSession();
+	};
 
 	@Repository
 	public static class SessionFactoryCreator implements ISessionFactoryCreator {
@@ -28,6 +29,10 @@ public class SessionFactoryInitializer {
 
 		public SessionFactory getSessionFactory() {
 			return sessionFactory;
+		}
+
+		public Session getSession() {
+			return this.sessionFactory.getCurrentSession();
 		}
 	}
 

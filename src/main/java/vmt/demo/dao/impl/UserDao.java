@@ -1,9 +1,6 @@
 package vmt.demo.dao.impl;
 
-import javax.transaction.Synchronization;
-
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +11,8 @@ import vmt.demo.model.entity.UserEntity;
 @Repository
 public class UserDao extends SessionFactoryCreator implements IUserDao {
 
+	private Session session = null;
+
 	public UserDao() {
 		super();
 	}
@@ -21,11 +20,14 @@ public class UserDao extends SessionFactoryCreator implements IUserDao {
 	@Transactional(readOnly = true)
 	@Override
 	public UserEntity addUser(String username, String password) {
-		Session session = null;
 		UserEntity user = null;
 
+		if (username == null || password == null) {
+			throw new NullPointerException("Parameters point at null value");
+		}
+
 		try {
-			session = this.getSessionFactory().getCurrentSession();
+			session = this.getSession();
 
 			user = new UserEntity();
 			user.setUserName(username);
@@ -38,7 +40,12 @@ public class UserDao extends SessionFactoryCreator implements IUserDao {
 			if (session != null) {
 				session.getTransaction().rollback();
 			}
-			throw new RuntimeException(e.getMessage());
+			throw new RuntimeException(this.getClass().getName() + " --> " + e.getMessage());
+
+		} finally {
+			if (session != null) {
+				session.flush();
+			}
 		}
 
 		return user;
@@ -47,14 +54,20 @@ public class UserDao extends SessionFactoryCreator implements IUserDao {
 	@Transactional(readOnly = true)
 	@Override
 	public UserEntity updateUser(UserEntity user) {
-		Session session = null;
+		if (user == null) {
+			throw new NullPointerException("UserEntity point at null value");
+		}
+
 		try {
-			session = this.getSessionFactory().getCurrentSession();
+			session = this.getSession();
 			session.update(user);
 			session.flush();
 
 		} catch (Exception e) {
-			throw new RuntimeException(e.getMessage());
+			if (session != null) {
+				session.getTransaction().rollback();
+			}
+			throw new RuntimeException(this.getClass().getName() + " --> " + e.getMessage());
 		}
 
 		return user;

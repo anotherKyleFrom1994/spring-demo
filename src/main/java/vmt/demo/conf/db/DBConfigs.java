@@ -1,12 +1,19 @@
 package vmt.demo.conf.db;
 
+import static org.hibernate.cfg.AvailableSettings.C3P0_MAX_SIZE;
+import static org.hibernate.cfg.AvailableSettings.C3P0_MIN_SIZE;
+import static org.hibernate.cfg.AvailableSettings.C3P0_TIMEOUT;
+import static org.hibernate.cfg.AvailableSettings.DRIVER;
+import static org.hibernate.cfg.AvailableSettings.FORMAT_SQL;
+import static org.hibernate.cfg.AvailableSettings.PASS;
+import static org.hibernate.cfg.AvailableSettings.SHOW_SQL;
+import static org.hibernate.cfg.AvailableSettings.URL;
+import static org.hibernate.cfg.AvailableSettings.USER;
+
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -14,19 +21,15 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import vmt.demo.model.entity.UserEntity;
-
-import static org.hibernate.cfg.Environment.*;
-
 @Configuration
 @PropertySource(value = { "classpath:jdbc.properties", "classpath:hibernate.properties" })
 @EnableTransactionManagement
-//@ComponentScans(value = { @ComponentScan("vmt.demo") })
+// @ComponentScans(value = { @ComponentScan("vmt.demo") })
 public class DBConfigs {
 	@Autowired
 	private Environment env;
-//	@Autowired
-//	private ApplicationContext context;
+	// @Autowired
+	// private ApplicationContext context;
 
 	@Bean
 	public LocalSessionFactoryBean getSessionFactory() {
@@ -47,9 +50,13 @@ public class DBConfigs {
 
 		factoryBean.setHibernateProperties(props);
 
-//		factoryBean.setConfigLocation(context.getResource("classpath:hibernate.cfg.xml"));
-//		 factoryBean.setAnnotatedClasses(UserEntity.class);
+		// Legacy XML config usage
+		// factoryBean.setConfigLocation(context.getResource("classpath:hibernate.cfg.xml"));
 
+		// Scan Components by register classes
+		// factoryBean.setAnnotatedClasses(UserEntity.class);
+
+		// Scan components by packages(recommend)
 		factoryBean.setPackagesToScan(env.getProperty("packages.to.scan"));
 
 		return factoryBean;
