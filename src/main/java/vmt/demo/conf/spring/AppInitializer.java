@@ -16,8 +16,12 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		return new Class[] { WebConfigs.class };
 	}
 
+	/**
+	 * Specify the suffix naming of the request URL pattern (e.g.
+	 * http://localhost:8080/create.do )
+	 */
 	@Override
 	protected String[] getServletMappings() {
-		return new String[] { "/" };
+		return new String[] { "/", "*.do" };
 	}
 }

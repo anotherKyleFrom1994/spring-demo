@@ -50,13 +50,13 @@ public class DBConfigs {
 
 		factoryBean.setHibernateProperties(props);
 
-		// Legacy XML config usage
+		// * Legacy XML config usage
 		// factoryBean.setConfigLocation(context.getResource("classpath:hibernate.cfg.xml"));
 
-		// Scan Components by register classes
+		// * Scan Components by register classes
 		// factoryBean.setAnnotatedClasses(UserEntity.class);
 
-		// Scan components by packages(recommend)
+		// * Scan components by packages(recommend)
 		factoryBean.setPackagesToScan(env.getProperty("packages.to.scan"));
 
 		return factoryBean;

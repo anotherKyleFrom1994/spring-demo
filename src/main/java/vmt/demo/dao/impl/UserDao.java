@@ -67,6 +67,7 @@ public class UserDao extends SessionFactoryCreator implements IUserDao {
 			if (session != null) {
 				session.getTransaction().rollback();
 			}
+
 			throw new RuntimeException(this.getClass().getName() + " --> " + e.getMessage());
 		}
 

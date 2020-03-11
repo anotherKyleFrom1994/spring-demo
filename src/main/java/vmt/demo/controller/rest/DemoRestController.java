@@ -1,9 +1,6 @@
 package vmt.demo.controller.rest;
 
-import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,14 +15,31 @@ import vmt.demo.model.view.ResultView;
 import vmt.demo.model.view.UserView;
 import vmt.demo.service.rest.IUserService;
 
-//@Controller
-//@ResponseBody
+/**
+ * 
+ * This controller is a controller that implements RESTful APIs.
+ * 
+ * The following comments {@code @controller} and {@code @RepsponsBody} is as
+ * Same as {@code @RestController}
+ * 
+ * @author Kyle Lin
+ * 
+ * @see vmt.demo.controller.page.DemoPageController
+ * 
+ */
+// @Controller
+// @ResponseBody
 @RestController
-@RequestMapping("/")
+@RequestMapping(value = "/restDemo")
 public class DemoRestController {
 	@Autowired
 	private IUserService userService;
 
+	/**
+	 * A get method handling GET request. Using request parameters in form type.
+	 * 
+	 * @see DemoRestController#updateUser(UserView)
+	 */
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
 	public ResultView addUser(@RequestParam String userName, String password) {
 		ResultView result = new ResultView();
@@ -46,6 +60,14 @@ public class DemoRestController {
 		return result;
 	}
 
+	/**
+	 * 
+	 * A get method handling POST request. Using object mapping.
+	 * 
+	 * @param userInfo
+	 * @see DemoRestController#addUser(String, String)
+	 * 
+	 */
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
 	public ResultView updateUser(@RequestBody UserView userInfo) {
 		ResultView result = new ResultView();
@@ -69,21 +91,15 @@ public class DemoRestController {
 		return result;
 	}
 
-//	@GetMapping(value = "/", method = RequestMethod.GET)
-//	public String index() {
-////		model.addAttribute("message", "登入者姓名 " + principal.getName());
-//		return "index";
-//	}
+	// @RequestMapping(value = "/login", method = RequestMethod.GET)
+	// public String show(Model model, Principal principal) {
+	// // model.addAttribute("message", "登入者姓名 " + principal.getName());
+	// return "index";
+	// }
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String show(Model model, Principal principal) {
-		model.addAttribute("message", "登入者姓名 " + principal.getName());
-		return "index";
-	}
-
-//	@GetMapping("/{name:[a-z-]+}-{version:\\d\\.\\d\\.\\d}{ext:\\.[a-z]+}")
-//	public void handle(@PathVariable String version, @PathVariable String ext) {
-//	    // ...
-//	}
+	// @GetMapping("/{name:[a-z-]+}-{version:\\d\\.\\d\\.\\d}{ext:\\.[a-z]+}")
+	// public void handle(@PathVariable String version, @PathVariable String ext) {
+	// // ...
+	// }
 
 }
