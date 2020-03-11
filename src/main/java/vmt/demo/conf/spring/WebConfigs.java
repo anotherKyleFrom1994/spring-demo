@@ -59,8 +59,11 @@ public class WebConfigs implements WebMvcConfigurer {
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		ViewControllerRegistration error = registry.addViewController("/*");
-		error.setViewName("error");
+		ViewControllerRegistration home = registry.addViewController("/");
+		home.setViewName("home");
+
+		ViewControllerRegistration error = registry.addViewController("*");
+		error.setViewName("error_page");
 		error.setStatusCode(HttpStatus.NOT_FOUND);
 
 	}

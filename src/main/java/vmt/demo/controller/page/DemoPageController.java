@@ -1,28 +1,29 @@
 package vmt.demo.controller.page;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import vmt.demo.model.view.ResultView;
+import vmt.demo.controller.exception.ExceptionController;
 
 @Controller
 @RequestMapping("/pageDemo")
-public class DemoPageController {
+public class DemoPageController extends ExceptionController {
 
-	@RequestMapping(value = "/aaaa", method = RequestMethod.GET)
-	public ResultView submitLoginForm(@RequestParam String userName, String userId, String password) {
-		ResultView result = new ResultView();
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String submitLoginForm(@RequestParam Model model, String userName, String password) {
+		String redirection = null;
 
-		if (StringUtils.isEmpty(userId) || StringUtils.isEmpty(password)) {
-			result.setMsg("Username or Password must not be empty");
-
+		if (userName != null && password != null) {
+			redirection = "login_success";
+			model.addAttribute("message", "Login big SUCCESS!!!!!");
 		} else {
-			result.setMsg("User " + userName + " created");
+			redirection = "";
+			model.addAttribute("message", "Login Fail");
 		}
 
-		return result;
+		return redirection;
 	}
 }

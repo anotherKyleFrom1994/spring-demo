@@ -24,6 +24,11 @@ public class UserService implements IUserService {
 		String msg = null;
 		boolean isSuccess = true;
 
+		/*
+		 * 
+		 * SOME BUSINESS LOGIC...
+		 * 
+		 */
 		try {
 			user = userDao.addUser(input.getUserName(), input.getPassword());
 
@@ -50,6 +55,11 @@ public class UserService implements IUserService {
 		String msg = null;
 		boolean isSuccess = true;
 
+		/*
+		 * 
+		 * SOME BUSINESS LOGIC...
+		 * 
+		 */
 		try {
 			UserEntity user = new UserEntity();
 			user.setUserSeq(input.getUserId());

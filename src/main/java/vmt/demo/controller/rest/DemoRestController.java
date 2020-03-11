@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import vmt.demo.controller.exception.ExceptionController;
 import vmt.demo.model.service.AddUserInput;
 import vmt.demo.model.service.AddUserOutput;
 import vmt.demo.model.service.UpdateUserInput;
@@ -32,7 +33,7 @@ import vmt.demo.service.rest.IUserService;
 @RestController
 @RequestMapping(value = "/restDemo")
 public class DemoRestController {
-	@Autowired
+	@Autowired()
 	private IUserService userService;
 
 	/**
@@ -91,15 +92,22 @@ public class DemoRestController {
 		return result;
 	}
 
-	// @RequestMapping(value = "/login", method = RequestMethod.GET)
-	// public String show(Model model, Principal principal) {
-	// // model.addAttribute("message", "登入者姓名 " + principal.getName());
-	// return "index";
-	// }
-
+	/*
+	 * There is also a way to register URI in regex or using JSTL
+	 */
 	// @GetMapping("/{name:[a-z-]+}-{version:\\d\\.\\d\\.\\d}{ext:\\.[a-z]+}")
 	// public void handle(@PathVariable String version, @PathVariable String ext) {
 	// // ...
+	// }
+
+	/*
+	 * { @code Principal } is advanced Spring security feature, it pre-validates the
+	 * information when receiving a request.
+	 */
+	// @RequestMapping(value = "/login", method = RequestMethod.GET)
+	// public String show(Model model, Principal principal) {
+	// model.addAttribute("message", "登入者姓名 " + principal.getName());
+	// return "index";
 	// }
 
 }

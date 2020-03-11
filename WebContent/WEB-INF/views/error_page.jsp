@@ -5,5 +5,6 @@
 <body>
 	<h1>ERROR</h1>
 	<h2>And ERROR occurred</h2>
+	<h2>${message}</h2>
 </body>
 </html>
