@@ -1,29 +1,36 @@
 package vmt.demo.controller.page;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
-import vmt.demo.controller.exception.ExceptionController;
+import vmt.demo.model.view.UserView;
 
 @Controller
 @RequestMapping("/pageDemo")
-public class DemoPageController extends ExceptionController {
+public class DemoPageController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String submitLoginForm(@RequestParam Model model, String userName, String password) {
-		String redirection = null;
+	public ModelAndView submitLoginForm(@RequestBody UserView input) {
+		ModelAndView mv = new ModelAndView();
+		String location = null;
 
-		if (userName != null && password != null) {
-			redirection = "login_success";
-			model.addAttribute("message", "Login big SUCCESS!!!!!");
+		if (input.getPassword() != null) {
+			Map<String, Object> model = mv.getModel();
+			model.put("message", "Login SUCCESS!!");
+			location = "login_success";
+
 		} else {
-			redirection = "";
-			model.addAttribute("message", "Login Fail");
+			Map<String, Object> model = mv.getModel();
+			model.put("message", "Login Fail");
+			location = "error_page";
 		}
 
-		return redirection;
+		mv.setViewName(location);
+		return mv;
 	}
 }

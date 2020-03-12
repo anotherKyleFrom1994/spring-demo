@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import vmt.demo.controller.exception.ExceptionController;
 import vmt.demo.model.service.AddUserInput;
 import vmt.demo.model.service.AddUserOutput;
 import vmt.demo.model.service.UpdateUserInput;

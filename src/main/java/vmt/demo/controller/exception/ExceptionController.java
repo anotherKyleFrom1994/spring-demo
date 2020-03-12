@@ -1,22 +1,30 @@
 package vmt.demo.controller.exception;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.view.RedirectView;
 
+import vmt.demo.utils.ExceptionUtil;
+
+/**
+ * 
+ * This class annotated with {@code @ControllerAdvice}, which would be executed
+ * either before and after the other controllers.
+ * 
+ * Note that the settings here will effect the whole system.
+ * 
+ * @author Kyle Lin
+ */
 @ControllerAdvice
 public class ExceptionController {
 
+	// /*
+	// * Here's another way to handle exceptions, the Pros is the coding style and
+	// the
+	// * methods can be more flexible, the Cons is that it will be more difficult to
+	// * hand over.
+	// */
 	// @ExceptionHandler(Exception.class)
 	// public RedirectView handle(Exception e, HttpServletRequest request,
 	// HttpServletResponse response) {
@@ -29,17 +37,18 @@ public class ExceptionController {
 	// return rw;
 	// }
 
+	/**
+	 * @param Exception
+	 * @return ModelAndView It will redirect you to
+	 * @throws Exception
+	 */
 	@ExceptionHandler(Exception.class)
-	public ModelAndView handle(Exception e, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView handle(Exception e) {
 		ModelAndView mv = new ModelAndView();
-
-		Map<String, String> attr = new HashMap<String, String>();
-		attr.put("message", "testteste");
 
 		mv.setViewName("error_page");
 		mv.setStatus(HttpStatus.BAD_GATEWAY);
-		mv.addObject(attr);
-		// return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(attr);
+		mv.getModel().put("message", ExceptionUtil.getStackTrace(e));
 		return mv;
 	}
 }

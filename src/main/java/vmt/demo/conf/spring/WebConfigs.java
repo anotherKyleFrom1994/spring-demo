@@ -30,6 +30,25 @@ public class WebConfigs implements WebMvcConfigurer {
 		return resolver;
 	}
 
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		ViewControllerRegistration home = registry.addViewController("/");
+		home.setViewName("home");
+
+		ViewControllerRegistration login = registry.addViewController("/login");
+		login.setViewName("login");
+
+		ViewControllerRegistration error = registry.addViewController("*");
+		error.setViewName("error_page");
+		error.setStatusCode(HttpStatus.NOT_FOUND);
+
+	}
+
+	// @Override
+	// public void addCorsMappings(CorsRegistry registry) {
+	// registry.addMapping("/**").allowedMethods("GET", "POST");
+	// }
+
 	// @Bean
 	// public MessageSource messageSource() {
 	// ResourceBundleMessageSource source = new ResourceBundleMessageSource();
@@ -55,21 +74,5 @@ public class WebConfigs implements WebMvcConfigurer {
 	// public void configureMessageConverters(List<HttpMessageConverter<?>>
 	// converters) {
 	// converters.add(responseBodyConverter());
-	// }
-
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		ViewControllerRegistration home = registry.addViewController("/");
-		home.setViewName("home");
-
-		ViewControllerRegistration error = registry.addViewController("*");
-		error.setViewName("error_page");
-		error.setStatusCode(HttpStatus.NOT_FOUND);
-
-	}
-
-	// @Override
-	// public void addCorsMappings(CorsRegistry registry) {
-	// registry.addMapping("/**").allowedMethods("GET", "POST");
 	// }
 }
