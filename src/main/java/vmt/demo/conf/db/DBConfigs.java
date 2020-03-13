@@ -22,6 +22,18 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
+ * Here's the configuration class that bind with Hibernate and delegated to
+ * Spring.
+ * 
+ * <p>
+ * To obtain the attributes in *.properties files, Spring provides
+ * {@code @PropertySource} and {@code @Enviroment}.
+ * </p>
+ * <p>
+ * All you have to do is to provide properties' classpath, then you can get the
+ * attributes. There are many ways to register JPA usage in annotation. I've
+ * chose the easiest one I supposed.
+ * </p>
  * 
  * @author Kyle Lin
  * @see
@@ -29,8 +41,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @PropertySource(value = { "classpath:jdbc.properties", "classpath:hibernate.properties" })
 @EnableTransactionManagement
-// @ComponentScans(value = { @ComponentScan("vmt.demo") })
 public class DBConfigs {
+
 	@Autowired
 	private Environment env;
 

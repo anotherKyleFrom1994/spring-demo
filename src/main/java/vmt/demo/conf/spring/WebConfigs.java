@@ -17,7 +17,8 @@ import org.springframework.web.servlet.view.JstlView;
 public class WebConfigs implements WebMvcConfigurer {
 
 	/**
-	 * Resolve the path and the file extension
+	 * Resolve the path and the file extension (e.g. when you use the path as
+	 * "home", it'll be resolved to "/WEB-INF/views/home.jsp")
 	 * 
 	 * @return
 	 */
@@ -30,6 +31,12 @@ public class WebConfigs implements WebMvcConfigurer {
 		return resolver;
 	}
 
+	/**
+	 * A simple way to register a controller, as there's no other request or
+	 * response action must be handled.
+	 * 
+	 * @see org.springframework.web.servlet.config.annotation.WebMvcConfigurer#addViewControllers(org.springframework.web.servlet.config.annotation.ViewControllerRegistry)
+	 */
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		ViewControllerRegistration home = registry.addViewController("/");
