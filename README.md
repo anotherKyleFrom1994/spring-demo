@@ -18,3 +18,22 @@ The steps that is suggested to be followed in sequence:
 	2-2. __service__<Br/>
 	2-3. __dao__<Br/>
 	2-4. __model__<Br/>
+
+
+# Scaffold
+
+```txt
+
+spring-demo/
+  └─ src/main/
+    └─ java/
+      └─ vmt/demo/
+    	└─ conf/
+    	└─ controller/
+    	└─ dao/
+    	└─ service/
+    	└─ model/
+    	└─ utils/
+      └─ resources/
+  
+```
