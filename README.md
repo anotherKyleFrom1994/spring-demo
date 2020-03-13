@@ -1,7 +1,8 @@
-# spring-demo
 A spring framework demo for basic tutorial
 
 ---
+
+# spring-demo
 
 The project is architected in Spring Framwork 5.2.x, and uses Hibernate 5.x to interpret JPA. 
 To follow up this guideline, you can aspect the architecture step by step. <Br/>
