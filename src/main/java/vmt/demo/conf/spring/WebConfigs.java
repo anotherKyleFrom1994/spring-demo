@@ -44,6 +44,14 @@ public class WebConfigs implements WebMvcConfigurer {
 
 	}
 
+	// @Bean
+	// public ContextCleanupListener listenerRegistration() {
+	// ContextCleanupListener cleanupListener = new ContextCleanupListener();
+	// ServletContextEvent event = null;
+	// cleanupListener.contextInitialized(event);
+	// return cleanupListener;
+	// }
+
 	// @Override
 	// public void addCorsMappings(CorsRegistry registry) {
 	// registry.addMapping("/**").allowedMethods("GET", "POST");

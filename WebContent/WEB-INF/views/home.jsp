@@ -5,6 +5,6 @@
 <body>
 	<h1>HowToDoInJava.com</h1>
 	<h2>Spring 5 Web MVC DispatcherServlet Example</h2>
-	<a href="/">login page</a>
+	<a href="/login">login page</a>
 </body>
 </html>

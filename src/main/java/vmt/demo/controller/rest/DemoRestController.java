@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import vmt.demo.conf.aop.Loggable;
 import vmt.demo.model.service.AddUserInput;
 import vmt.demo.model.service.AddUserOutput;
 import vmt.demo.model.service.UpdateUserInput;
@@ -32,7 +33,7 @@ import vmt.demo.service.rest.IUserService;
 @RestController
 @RequestMapping(value = "/restDemo")
 public class DemoRestController {
-	@Autowired()
+	@Autowired
 	private IUserService userService;
 
 	/**
@@ -40,6 +41,7 @@ public class DemoRestController {
 	 * 
 	 * @see DemoRestController#updateUser(UserView)
 	 */
+	@Loggable
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
 	public ResultView addUser(@RequestParam String userName, String password) {
 		ResultView result = new ResultView();

@@ -21,6 +21,11 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/**
+ * 
+ * @author Kyle Lin
+ * @see
+ */
 @Configuration
 @PropertySource(value = { "classpath:jdbc.properties", "classpath:hibernate.properties" })
 @EnableTransactionManagement
@@ -28,9 +33,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class DBConfigs {
 	@Autowired
 	private Environment env;
-	// @Autowired
-	// private ApplicationContext context;
 
+	/**
+	 * {@code @Bean} is auto refers to the methods of bean, if there is {@code
+	 * shutdown()} or {@code close()} method, will be auto referred. It can be also
+	 * registered as {@code @Bean(destroyMethod = "shutdown")}, but usually it's not
+	 * necessary.
+	 * 
+	 * @link https://www.ojit.com/article/1823563
+	 */
 	@Bean
 	public LocalSessionFactoryBean getSessionFactory() {
 		LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
@@ -50,13 +61,13 @@ public class DBConfigs {
 
 		factoryBean.setHibernateProperties(props);
 
-		// * Legacy XML config usage
+		/* Legacy XML config usage */
 		// factoryBean.setConfigLocation(context.getResource("classpath:hibernate.cfg.xml"));
 
-		// * Scan Components by register classes
+		/* Scan Components by register classes */
 		// factoryBean.setAnnotatedClasses(UserEntity.class);
 
-		// * Scan components by packages(recommend)
+		/* Scan components by packages(recommend) */
 		factoryBean.setPackagesToScan(env.getProperty("packages.to.scan"));
 
 		return factoryBean;

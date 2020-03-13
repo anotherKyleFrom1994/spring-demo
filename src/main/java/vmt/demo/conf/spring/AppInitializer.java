@@ -2,13 +2,14 @@ package vmt.demo.conf.spring;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import vmt.demo.conf.aop.AOPConfig;
 import vmt.demo.conf.db.DBConfigs;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { DBConfigs.class };
+		return new Class[] { DBConfigs.class, AOPConfig.class };
 	}
 
 	@Override
