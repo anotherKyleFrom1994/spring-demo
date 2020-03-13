@@ -9,7 +9,7 @@ To follow up this guideline, you can aspect the architecture step by step. <Br/>
 
 The steps that is suggested to be followed in sequence:
 
-1. Configurations in "conf" package<Br/>
+1. Configurations in __conf__ package<Br/>
 	1-1. __spring__ package, there are some basic settings of Spring Framework<Br/>
 	1-2. __db__ package<Br/>
 	1-3. __aop__ package<Br/>
