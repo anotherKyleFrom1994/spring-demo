@@ -17,6 +17,13 @@ public class UserDao extends SessionFactoryCreator implements IUserDao {
 		super();
 	}
 
+	/**
+	 * Transaction is managed by Spring. Basically in here, we only have to annotate
+	 * {@code @Transactional} as it use <em>Intercepter</em> to begin transaction
+	 * before method started, and at the end of execution.
+	 * 
+	 * @see vmt.demo.dao.IUserDao#addUser(java.lang.String, java.lang.String)
+	 */
 	@Transactional(readOnly = true)
 	@Override
 	public UserEntity addUser(String username, String password) {

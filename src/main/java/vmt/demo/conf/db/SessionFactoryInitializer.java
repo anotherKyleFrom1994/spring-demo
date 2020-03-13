@@ -32,6 +32,7 @@ public class SessionFactoryInitializer {
 		}
 
 		public Session getSession() {
+			this.sessionFactory.openSession();
 			return this.sessionFactory.getCurrentSession();
 		}
 	}
