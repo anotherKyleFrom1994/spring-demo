@@ -8,16 +8,32 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import vmt.demo.dao.impl.UserDao;
+
 /**
- * 
+ * <p>
+ * The entity class uses native Java Persistence APIs(JPA). As a standard to
+ * inform relational database that it's a table in the schema.
+ * </p>
+ * <p>
+ * Description in the class includes Table name and schema, Unique
+ * Identification, Sequence(in Oracle) or Identity(in MySQL), etc.
+ * </p>
+ * <p>
+ * It will be used in Hibernate DAO.
+ * </p>
  * 
  * @author Kyle Lin
- * @see
+ * @see UserDao
  */
 @Entity
 @Table(name = "DEMO_USERS", schema = "KYLE_LIN")
 public class UserEntity {
 
+	/**
+	 * "DEMO_USERS_PK_S" is a Sequence name from database. "user_pk_generator" is a
+	 * custom generator name in Java.
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_pk_generator")
 	@SequenceGenerator(name = "user_pk_generator", sequenceName = "DEMO_USERS_PK_S", allocationSize = 1)

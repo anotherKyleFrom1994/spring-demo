@@ -14,12 +14,18 @@ import org.springframework.stereotype.Repository;
 
 public class SessionFactoryInitializer {
 
+	/**
+	 * To register a instance in Spring, an interface should be created and be
+	 * implemented, in order to make the instances under control.
+	 * 
+	 * @author Kyle Lin
+	 */
 	public interface ISessionFactoryCreator {
 	};
 
 	/**
 	 * {@code @Repository} notify Spring here's a repository that should be managed
-	 * by the framework.
+	 * by the framework, and exposes itself to Spring.
 	 * 
 	 * @author Kyle Lin
 	 * @see

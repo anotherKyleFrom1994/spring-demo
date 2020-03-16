@@ -10,7 +10,6 @@ import vmt.demo.model.entity.UserEntity;
 
 @Repository
 public class UserDao extends SessionFactoryCreator implements IUserDao {
-
 	private Session session = null;
 
 	public UserDao() {
@@ -24,14 +23,14 @@ public class UserDao extends SessionFactoryCreator implements IUserDao {
 	 * 
 	 * @see vmt.demo.dao.IUserDao#addUser(java.lang.String, java.lang.String)
 	 */
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = true, transactionManager = "")
 	@Override
 	public UserEntity addUser(String username, String password) {
 		UserEntity user = null;
 
-		if (username == null || password == null) {
-			throw new NullPointerException("Parameters point at null value");
-		}
+		// if (username == null || password == null) {
+		// throw new NullPointerException("Parameters point at null value");
+		// }
 
 		try {
 			session = this.getSession();
@@ -44,9 +43,6 @@ public class UserDao extends SessionFactoryCreator implements IUserDao {
 			session.flush();
 
 		} catch (Exception e) {
-			if (session != null) {
-				session.getTransaction().rollback();
-			}
 			throw new RuntimeException(this.getClass().getName() + " --> " + e.getMessage());
 
 		} finally {

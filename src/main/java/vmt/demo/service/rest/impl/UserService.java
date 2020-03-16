@@ -10,6 +10,7 @@ import vmt.demo.model.service.AddUserOutput;
 import vmt.demo.model.service.UpdateUserInput;
 import vmt.demo.model.service.UpdateUserOutput;
 import vmt.demo.service.rest.IUserService;
+import vmt.demo.utils.ExceptionUtil;
 
 @Service
 public class UserService implements IUserService {
@@ -38,7 +39,7 @@ public class UserService implements IUserService {
 
 		} catch (Exception e) {
 			isSuccess = false;
-			msg = e.getMessage();
+			msg = ExceptionUtil.getStackTrace(e);
 		}
 
 		result.setMsg(msg);

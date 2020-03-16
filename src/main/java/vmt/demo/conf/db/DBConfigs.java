@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -53,6 +54,7 @@ import vmt.demo.conf.spring.WebConfigs;
  */
 @Configuration
 @PropertySource(value = { "classpath:jdbc.properties", "classpath:hibernate.properties" })
+@ComponentScan(basePackages = { "vmt.demo.conf.db", "vmt.demo" })
 @EnableTransactionManagement
 public class DBConfigs {
 
@@ -65,7 +67,8 @@ public class DBConfigs {
 	 * registered as {@code @Bean(destroyMethod = "shutdown")}, but usually it's not
 	 * necessary.
 	 * 
-	 * @link https://www.ojit.com/article/1823563
+	 * @see <a href=
+	 *      "https://www.ojit.com/article/1823563">https://www.ojit.com/article/1823563</a>
 	 */
 	@Bean
 	public LocalSessionFactoryBean getSessionFactory() {
@@ -89,7 +92,7 @@ public class DBConfigs {
 		/* Legacy XML config usage */
 		// factoryBean.setConfigLocation(context.getResource("classpath:hibernate.cfg.xml"));
 
-		/* Scan Components by register classes */
+		/* Scan Components by registering classes */
 		// factoryBean.setAnnotatedClasses(UserEntity.class);
 
 		/* Scan components by packages(recommend) */

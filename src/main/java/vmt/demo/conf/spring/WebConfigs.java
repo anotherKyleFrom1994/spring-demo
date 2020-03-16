@@ -2,7 +2,9 @@ package vmt.demo.conf.spring;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistration;
@@ -12,13 +14,23 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 /**
+ * DispatcherServlet is packed by Spring here, as you can configure the options
+ * in this class.
+ * 
+ * By annotated {@code @EnableWebMvc}, Spring container considers the default
+ * values is set. i.e. It'll fill up the attributes to fulfill the mandatory
+ * columns when initializing the container.
+ * 
+ * You can override the methods from the super class, also can you override the
+ * classes responsible for the functions, and use {@code @Bean} to expose them.
  * 
  * @author Kyle Lin
- * @see
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "vmt.demo" })
+// @ComponentScan(basePackages = { "vmt.demo" })
+@ComponentScan(basePackages = { "vmt.demo" }, excludeFilters = {
+		@Filter(type = FilterType.REGEX, pattern = { "vmt.demo.conf.db", "dao" }) })
 public class WebConfigs implements WebMvcConfigurer {
 
 	/**
@@ -56,14 +68,12 @@ public class WebConfigs implements WebMvcConfigurer {
 
 	}
 
-	// @Bean
-	// public ContextCleanupListener listenerRegistration() {
-	// ContextCleanupListener cleanupListener = new ContextCleanupListener();
-	// ServletContextEvent event = null;
-	// cleanupListener.contextInitialized(event);
-	// return cleanupListener;
-	// }
-
+	// /**
+	// * There is also a feature supports Cross-Origin Resource Sharing(CORS).
+	// *
+	// * @see
+	// org.springframework.web.servlet.config.annotation.WebMvcConfigurer#addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry)
+	// */
 	// @Override
 	// public void addCorsMappings(CorsRegistry registry) {
 	// registry.addMapping("/**").allowedMethods("GET", "POST");
