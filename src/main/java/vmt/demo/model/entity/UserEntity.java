@@ -8,13 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+ * 
+ * 
+ * @author Kyle Lin
+ * @see
+ */
 @Entity
 @Table(name = "DEMO_USERS", schema = "KYLE_LIN")
 public class UserEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_pk_generator")
-	@SequenceGenerator(name="user_pk_generator", sequenceName = "DEMO_USERS_PK_S", allocationSize = 1)
+	@SequenceGenerator(name = "user_pk_generator", sequenceName = "DEMO_USERS_PK_S", allocationSize = 1)
 	@Column(name = "USER_ID", nullable = false)
 	private Integer userSeq;
 

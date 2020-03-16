@@ -7,6 +7,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Basic usage of Java annotation registration. There is a series of tutorial on
+ * <a href="https://openhome.cc/Gossip/Java/CustomizeAnnotation.html">
+ * Openhome.cc </a>.
+ * 
+ * @author Kyle Lin
+ */
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

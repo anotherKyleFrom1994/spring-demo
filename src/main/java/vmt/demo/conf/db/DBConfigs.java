@@ -21,9 +21,18 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import vmt.demo.conf.aop.AOPConfig;
+import vmt.demo.conf.spring.WebConfigs;
+
 /**
  * Here's the configuration class that bind with Hibernate and delegated to
  * Spring.
+ * 
+ * <p>
+ * {@code @EnableTransactionManagement} Enables Spring's annotation-driven
+ * transaction management capability, similar to the support found in Spring's
+ * {@code <tx:*>}.
+ * </p>
  * 
  * <p>
  * To obtain the attributes in *.properties files, Spring provides
@@ -34,9 +43,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * attributes. There are many ways to register JPA usage in annotation. I've
  * chose the easiest one I supposed.
  * </p>
+ * <p>
+ * The configuration style is as same as others.
+ * </p>
  * 
  * @author Kyle Lin
- * @see
+ * @see AOPConfig
+ * @see WebConfigs
  */
 @Configuration
 @PropertySource(value = { "classpath:jdbc.properties", "classpath:hibernate.properties" })
