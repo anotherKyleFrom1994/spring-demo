@@ -17,15 +17,22 @@ import vmt.demo.model.view.UserView;
 import vmt.demo.service.rest.IUserService;
 
 /**
- * 
  * This controller is a controller that implements RESTful APIs.
- * 
- * The following comments {@code @controller} and {@code @RepsponsBody} is as
- * Same as {@code @RestController}
+ * <p>
+ * The combination usage of {@code @controller} and {@code @RepsponsBody} is as
+ * same as {@code @RestController}
+ * </p>
+ * <p>
+ * {@code @Controller} is just another kind of {@code @Component}, to categorize
+ * the type of Spring component.
+ * </p>
  * 
  * @author Kyle Lin
  * 
  * @see vmt.demo.controller.page.DemoPageController
+ * @see org.springframework.stereotype.Component
+ * @see org.springframework.stereotype.Service
+ * @see org.springframework.stereotype.Repository
  * 
  */
 // @Controller
@@ -33,6 +40,9 @@ import vmt.demo.service.rest.IUserService;
 @RestController
 @RequestMapping(value = "/restDemo")
 public class DemoRestController {
+	/**
+	 * Inversion of Control, dependency is injected by Spring.
+	 */
 	@Autowired
 	private IUserService userService;
 
@@ -63,7 +73,6 @@ public class DemoRestController {
 	}
 
 	/**
-	 * 
 	 * A get method handling POST request. Using object mapping.
 	 * 
 	 * @param userInfo

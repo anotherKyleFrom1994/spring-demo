@@ -20,7 +20,7 @@ import vmt.demo.dao.impl.UserDao;
  * Identification, Sequence(in Oracle) or Identity(in MySQL), etc.
  * </p>
  * <p>
- * It will be used in Hibernate DAO.
+ * It will be used in DAO.
  * </p>
  * 
  * @author Kyle Lin

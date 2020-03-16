@@ -17,7 +17,7 @@ import vmt.demo.utils.ExceptionUtil;
  * @author Kyle Lin
  */
 @ControllerAdvice
-public class ExceptionController {
+public class ExceptionControllerAdvice {
 
 	// /*
 	// * Here's another way to handle exceptions, the Pros is the coding style and

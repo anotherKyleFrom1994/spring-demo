@@ -1,13 +1,23 @@
 package vmt.demo.dao.impl;
 
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import vmt.demo.conf.db.SessionFactoryInitializer.SessionFactoryCreator;
 import vmt.demo.dao.IUserDao;
 import vmt.demo.model.entity.UserEntity;
 
+/**
+ * This DAO class extends custom class to get the session factory instance.
+ * 
+ * @author KyleLin
+ */
 @Repository
 public class UserDao extends SessionFactoryCreator implements IUserDao {
 	private Session session = null;
@@ -54,9 +64,15 @@ public class UserDao extends SessionFactoryCreator implements IUserDao {
 		return user;
 	}
 
+//	@Autowired
+//	private DataSourceTransactionManager transactionManager;
 	@Transactional(readOnly = true)
 	@Override
 	public UserEntity updateUser(UserEntity user) {
+//		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+//		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+//		
+//		TransactionStatus status = transactionManager.getTransaction(def);
 		if (user == null) {
 			throw new NullPointerException("UserEntity point at null value");
 		}
