@@ -54,7 +54,7 @@ import vmt.demo.conf.spring.WebConfigs;
  */
 @Configuration
 @PropertySource(value = { "classpath:jdbc.properties", "classpath:hibernate.properties" })
-@ComponentScan(basePackages = { "vmt.demo.conf.db", "vmt.demo" })
+@ComponentScan(basePackages = { "vmt.demo.conf.db" })
 @EnableTransactionManagement
 public class DBConfigs {
 

@@ -19,9 +19,12 @@ import vmt.demo.conf.db.DBConfigs;
  * <p>
  * There are other ways to fulfill the same requirement. I've chosen the
  * simplest one that I supposed. If you're interested in other ways to configure
- * Spring Framework, here's the official documentation: <a href=
- * "https://docs.spring.io/spring/docs/current/spring-framework-reference/index.html">Spring
- * Framework</a>
+ * Spring Framework.
+ * 
+ * <pre>
+ * Here's the official documentation: <a href=
+ * "https://docs.spring.io/spring/docs/current/spring-framework-reference/index.html">Spring Framework</a>
+ * </pre>
  * </p>
  * 
  * @author Kyle Lin
@@ -87,6 +90,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	 */
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
+		// Read "applicationContext.xml" here when using legacy settings.
 		super.onStartup(servletContext);
 	}
 

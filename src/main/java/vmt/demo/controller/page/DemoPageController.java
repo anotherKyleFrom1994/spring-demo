@@ -4,9 +4,9 @@ import java.util.Map;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -48,10 +48,10 @@ public class DemoPageController {
 	 * </pre>
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public ModelAndView submitLoginForm(@RequestBody Map<String, String> input) {
+	public ModelAndView submitLoginForm(@RequestParam Map<String, String> input) {
 		ModelAndView mv = new ModelAndView();
 		String location = null;
-		if (input.get("password") != null) {
+		if (input.get("password") != null && !input.get("password").isEmpty()) {
 			Map<String, Object> model = mv.getModel();
 			model.put("message", "Login SUCCESS!!");
 			location = "login_success";
