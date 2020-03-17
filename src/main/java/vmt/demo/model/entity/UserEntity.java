@@ -16,8 +16,9 @@ import vmt.demo.dao.impl.UserDao;
  * inform relational database that it's a table in the schema.
  * </p>
  * <p>
- * Description in the class includes Table name and schema, Unique
- * Identification, Sequence(in Oracle) or Identity(in MySQL), etc.
+ * An entity class should be a Plain Ordinary Java Object (POJO) with getters
+ * and setters. Description in Entity class includes Table name and schema,
+ * Unique Identification, Sequence (in Oracle) or Identity (in MySQL), etc.
  * </p>
  * <p>
  * It will be used in DAO.

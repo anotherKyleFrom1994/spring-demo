@@ -40,6 +40,7 @@ public class UserService implements IUserService {
 		} catch (Exception e) {
 			isSuccess = false;
 			msg = ExceptionUtil.getStackTrace(e);
+			throw new RuntimeException(e);
 		}
 
 		result.setMsg(msg);
