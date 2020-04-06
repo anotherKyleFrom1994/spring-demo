@@ -46,7 +46,7 @@ public class CustomAdvice {
 	private static final String START_BRACKET = "(";
 	private static final String END_BRACKET = ")";
 
-	private static final String loggerInterface = "vmt.demo.conf.aop.Loggable";
+	private static final String loggerInterface = "com.demo.conf.aop.Loggable";
 
 	/**
 	 * Before entering the joint point. Which means before the annotated method
@@ -54,7 +54,7 @@ public class CustomAdvice {
 	 * 
 	 * @param joinPoint
 	 */
-	@Before(ANNOTATION_TAG + START_BRACKET + loggerInterface + END_BRACKET) // @annotation(vmt.demo.conf.aop.Loggable)
+	@Before(ANNOTATION_TAG + START_BRACKET + loggerInterface + END_BRACKET) // @annotation(com.demo.conf.aop.Loggable)
 	public void beforeLogging(JoinPoint joinPoint) {
 		// Object target = joinPoint.getTarget();
 		String methodName = joinPoint.getSignature().getName();
@@ -70,7 +70,7 @@ public class CustomAdvice {
 	 * 
 	 * @param joinPoint
 	 */
-	@After(ANNOTATION_TAG + START_BRACKET + loggerInterface + END_BRACKET) // @annotation(vmt.demo.conf.aop.Loggable)
+	@After(ANNOTATION_TAG + START_BRACKET + loggerInterface + END_BRACKET) // @annotation(com.demo.conf.aop.Loggable)
 	public void afterLogging(JoinPoint joinPoint) {
 		String methodName = joinPoint.getSignature().getName();
 		System.out.println("After running loggingAdvice on method=" + methodName);
@@ -83,7 +83,7 @@ public class CustomAdvice {
 	 * @param joinPoint
 	 */
 	// @Around(ANNOTATION_TAG + START_BRACKET + loggerInterface + END_BRACKET) //
-	// @annotation(vmt.demo.conf.aop.Loggable)
+	// @annotation(com.demo.conf.aop.Loggable)
 	// public void aroundLogging(JoinPoint joinPoint) {
 	// String methodName = joinPoint.getSignature().getName();
 	// System.out.println("LoggingAdvice on method=" + methodName);

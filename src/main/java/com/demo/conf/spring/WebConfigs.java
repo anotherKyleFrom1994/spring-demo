@@ -28,9 +28,9 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
-// @ComponentScan(basePackages = { "vmt.demo" })
-@ComponentScan(basePackages = { "vmt.demo" }, excludeFilters = {
-		@Filter(type = FilterType.REGEX, pattern = { "vmt.demo.conf.db", "dao" }) })
+// @ComponentScan(basePackages = { "com.demo" })
+@ComponentScan(basePackages = { "com.demo" }, excludeFilters = {
+		@Filter(type = FilterType.REGEX, pattern = { "com.demo.conf.db", "dao" }) })
 public class WebConfigs implements WebMvcConfigurer {
 
 	/**

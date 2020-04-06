@@ -28,7 +28,7 @@ The steps that is suggested to be followed in sequence:
 spring-demo/
   └─ src/main/
     └─ java/
-      └─ vmt/demo/
+      └─ com/demo/
     	└─ conf/
     	└─ controller/
     	└─ dao/

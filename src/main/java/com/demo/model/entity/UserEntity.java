@@ -28,7 +28,7 @@ import com.demo.dao.impl.UserDao;
  * @see UserDao
  */
 @Entity
-@Table(name = "DEMO_USERS", schema = "KYLE_LIN")
+@Table(name = "DEMO_USERS")
 public class UserEntity {
 
 	/**

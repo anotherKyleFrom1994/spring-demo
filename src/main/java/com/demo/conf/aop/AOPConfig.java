@@ -23,7 +23,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * @see org.springframework.context.annotation.EnableAspectJAutoProxy
  */
 @Configuration
-@ComponentScan(basePackages = { "vmt.demo.conf.aop" })
+@ComponentScan(basePackages = { "com.demo.conf.aop" })
 @EnableAspectJAutoProxy
 public class AOPConfig {
 
