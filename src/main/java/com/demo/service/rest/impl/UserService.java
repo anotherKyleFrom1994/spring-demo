@@ -65,6 +65,7 @@ public class UserService implements IUserService {
 		try {
 			UserEntity user = new UserEntity();
 			user.setUserSeq(input.getUserId());
+			user.setUserName(input.getUserName());
 			user.setPassword(input.getPassword());
 
 			returnedUser = userDao.updateUser(user);

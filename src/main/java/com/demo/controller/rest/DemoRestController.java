@@ -86,6 +86,7 @@ public class DemoRestController {
 		if (userInfo != null) {
 			UpdateUserInput input = new UpdateUserInput();
 			input.setUserId(userInfo.getUserId());
+			input.setUserName(userInfo.getUserName());
 			input.setPassword(userInfo.getPassword());
 			UpdateUserOutput output = userService.updateUser(input);
 
