@@ -52,7 +52,7 @@ public class DemoRestController {
 	 * @see DemoRestController#updateUser(UserView)
 	 */
 	@Loggable
-	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/addUser.do", method = RequestMethod.GET)
 	public ResultView addUser(@RequestParam String userName, String password) {
 		ResultView result = new ResultView();
 
@@ -79,7 +79,7 @@ public class DemoRestController {
 	 * @see DemoRestController#addUser(String, String)
 	 * 
 	 */
-	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateUser.do", method = RequestMethod.POST)
 	public ResultView updateUser(@RequestBody UserView userInfo) {
 		ResultView result = new ResultView();
 
@@ -117,7 +117,7 @@ public class DemoRestController {
 	 */
 	// @RequestMapping(value = "/login", method = RequestMethod.GET)
 	// public String show(Model model, Principal principal) {
-	// model.addAttribute("message", "登入者姓名 " + principal.getName());
+	// model.addAttribute("message", "������ " + principal.getName());
 	// return "index";
 	// }
 

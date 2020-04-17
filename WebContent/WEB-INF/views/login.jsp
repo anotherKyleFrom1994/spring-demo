@@ -7,7 +7,7 @@
 		<div style="color: red; font-weight: bold; margin: 30px 0px;">${errorMessge}</div>
 	</c:if>
 
-	<form name='login' action="pageDemo/login" method='POST'>
+	<form name='login' action="pageDemo/login.do" method='POST'>
 		<table>
 			<tr>
 				<td>UserName:</td>

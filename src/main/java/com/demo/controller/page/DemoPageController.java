@@ -47,7 +47,7 @@ public class DemoPageController {
 	 * difficulty to use in some circumstances.
 	 * </pre>
 	 */
-	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public ModelAndView submitLoginForm(@RequestParam Map<String, String> input) {
 		ModelAndView mv = new ModelAndView();
 		String location = null;
