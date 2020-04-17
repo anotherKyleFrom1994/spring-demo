@@ -15,9 +15,12 @@ To follow up this guideline, you can aspect the architecture step by step. <Br/>
 
 # Initialize
 
-After installing the oracle DB, you must: 
-1. Execute the script "src/main/resources/SQL_FOR_DEMO.sql" in the DB
-2. Change the user name and password (also your JDBC url if needed) of your database connection in "src/main/resources/jdbc.properties"
+1. Install <a href="https://www.oracle.com/tw/database/technologies/112010-win64soft.html">__Oracle Database 11g__</a> first,
+website of installation guide <a href="http://dog0416.blogspot.com/2013/12/databasewindow-oracle-11g.html">__here__</a><Br/>
+
+2. After installing the oracle DB, you must: <Br/>
+	2-1. Execute the script "src/main/resources/SQL_FOR_DEMO.sql" in the DB<Br/>
+	2-2. Change the user name and password (also your JDBC url if needed) of your database connection in "src/main/resources/jdbc.properties"<Br/>
 
 
 # Sequence to follow
