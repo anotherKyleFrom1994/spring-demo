@@ -13,7 +13,7 @@ To follow up this guideline, you can aspect the architecture step by step. <Br/>
 * Apache Tomcat 8.5 (or latter version)
 
 
-#Initialize
+# Initialize
 
 After installing the oracle DB, you must: 
 1. Execute the script "src/main/resources/SQL_FOR_DEMO.sql" in the DB
