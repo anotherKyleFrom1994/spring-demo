@@ -4,8 +4,23 @@ A spring framework demo for basic tutorial
 
 # spring-demo
 
-The project is architected in Spring Framwork 5.2.x, and uses Hibernate 5.x to interpret JPA. 
+The project is architected in Spring Framwork 5.2.x, and uses Hibernate 5.x to manage persistence layer. 
 To follow up this guideline, you can aspect the architecture step by step. <Br/>
+
+# Runtime environment
+
+* Oracle database 11g (or latter version)
+* Apache Tomcat 8.5 (or latter version)
+
+
+#Initialize
+
+After installing the oracle DB, you must: 
+1. Execute the script "src/main/resources/SQL_FOR_DEMO.sql" in the DB
+2. Change the user name and password (also your JDBC url if needed) of your database connection in "src/main/resources/jdbc.properties"
+
+
+# Sequence to follow
 
 The steps that is suggested to be followed in sequence:
 
@@ -19,6 +34,7 @@ The steps that is suggested to be followed in sequence:
 	2-2. __service__<Br/>
 	2-3. __dao__<Br/>
 	2-4. __model__<Br/>
+
 
 
 # Scaffold
@@ -38,6 +54,7 @@ spring-demo/
       └─ resources/
   
 ```
+
 
 # Author's contact info
 Email: k19631966@gmail.com

@@ -18,13 +18,32 @@ import com.demo.service.rest.IUserService;
 
 /**
  * This controller is a controller that implements RESTful APIs.
+ * 
  * <p>
  * The combination usage of {@code @controller} and {@code @RepsponsBody} is as
  * same as {@code @RestController}
  * </p>
+ * 
  * <p>
  * {@code @Controller} is just another kind of {@code @Component}, to categorize
  * the type of Spring component.
+ * </p>
+ * 
+ * <p>
+ * The request url in GET method should be like:<br/>
+ * <a href=
+ * "http://localhost:8080/spring-demo/restDemo/doSomthing.do?key1=value1&key2=value2">
+ * http://localhost:8080/spring-demo/restDemo/doSomthing.do?key1=value1&key2=value2
+ * </a>
+ * </p>
+ * 
+ * <p>
+ * The request url in POST method should be like:<br/>
+ * 
+ * <a href= "http://localhost:8080/spring-demo/restDemo/doSomthing.do">
+ * http://localhost:8080/spring-demo/restDemo/doSomthing.do </a><br/>
+ * 
+ * using the post method (e.g. web form, 3rd-party request tools)
  * </p>
  * 
  * @author Kyle Lin
@@ -33,7 +52,6 @@ import com.demo.service.rest.IUserService;
  * @see org.springframework.stereotype.Component
  * @see org.springframework.stereotype.Service
  * @see org.springframework.stereotype.Repository
- * 
  */
 // @Controller
 // @ResponseBody
@@ -117,7 +135,7 @@ public class DemoRestController {
 	 */
 	// @RequestMapping(value = "/login", method = RequestMethod.GET)
 	// public String show(Model model, Principal principal) {
-	// model.addAttribute("message", "������ " + principal.getName());
+	// model.addAttribute("message", principal.getName());
 	// return "index";
 	// }
 
