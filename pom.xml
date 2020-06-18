@@ -23,7 +23,7 @@
 		<oracle.version>12.2.0.1</oracle.version>
 		<jackson.annotations.version>2.9.7</jackson.annotations.version>
 		<jackson.core.version>2.9.7</jackson.core.version>
-		<jackson.databind.version>2.9.10.4</jackson.databind.version>
+		<jackson.databind.version>2.10.0.pr1</jackson.databind.version>
 	</properties>
 	<dependencies>
 		<!-- Spring MVC Dependency -->
